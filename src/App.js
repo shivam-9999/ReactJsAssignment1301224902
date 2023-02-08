@@ -16,7 +16,7 @@ function App() {
             <Route path='/Finalpage' element={<FinalPage/>}/>
           </Routes>
         </BrowserRouter>
-        {/* <LoginPage/> */}
+//         {/* <LoginPage/> */}
      
     </div>
   );
