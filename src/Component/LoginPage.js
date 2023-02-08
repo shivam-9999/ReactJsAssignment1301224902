@@ -1,13 +1,13 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Form,Card, Container, Row, Col,Button,FormControl } from "react-bootstrap";
 import StudentDetails from "./StudentDetails";
 import { BrowserRouter, Routes, Router,Link } from "react-router-dom";
-
+import { Navigate } from 'react-router-dom';
 
 
 const LoginPage = () => {
     const [loginForm, setLoginForm] = useState({email:"", password:""});
-
+    const [StudentDetailsPageNevigate,setStudentDetailsPageNevigate] = useState(false);
     const handleChange = (event) => {
         setLoginForm({...loginForm,[event.target.name]:event.target.value
 }
@@ -17,6 +17,7 @@ const LoginPage = () => {
     const handleSubmit=(e)=>{
         e.preventDefault();
         console.log(loginForm);
+        setStudentDetailsPageNevigate(true);
     }
 
 
@@ -60,12 +61,9 @@ const LoginPage = () => {
                                     />
                             </Col>
                         </Form.Group>
-                        <Link to="/StudentDetails">
-
-                            <Button type="submit"  variant="success"  style={{ width: "100%" }}>Login</Button>{' '}
-                        </Link>
+                        <Button type="submit"  variant="success"  style={{ width: "100%" }}>Login</Button>{' '}
                     </Form>
-                    
+                    {StudentDetailsPageNevigate===true &&<Navigate to="StudentDetails/" state={loginForm}/>}
             </Card.Body>
             </Card>
         </div>
