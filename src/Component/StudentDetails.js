@@ -4,14 +4,17 @@ import { Link,Route ,Routes} from "react-router-dom";
 import FinalPage from "./FinalPage";
 import { Navigate } from 'react-router-dom';
 import LoginPage from "./LoginPage";
-
+import { useLocation } from 'react-router-dom';
 
 
 const StudentDetails = () => {
     
+    const {state} = useLocation();
+    console.log("state",state);
  
-    const [StudentDetails, setStudentDetails] = useState({courseCode:"", courseName:"", studentEmail:"", Comments:""});
+    const [StudentDetails, setStudentDetails] = useState({courseCode:"", courseName:"", studentEmail:state.email, Comments:""});
     const [finalPage,setFinalPage] = useState(false);
+    
 
     const handleChange = (event) => {
          setStudentDetails({...StudentDetails,[event.target.name]:event.target.value});
@@ -77,8 +80,8 @@ const StudentDetails = () => {
                                     type="text"
                                     name="studentEmail"
                                     placeholder="Student Email"
-                                    value={StudentDetails.studentEmail}
-                                    onChange={handleChange}
+                                    value={state.email}
+                                    readOnly
                                 />
                                 </Col>
                         </Form.Group>
@@ -101,7 +104,7 @@ const StudentDetails = () => {
                             <Button type="submit"  variant="success"  style={{ width: "100%" }}>Login</Button>{' '}
                         </Form>
                     
-                      
+                        {StudentDetails===true &&<Navigate to="/Finalpage" state={state}/>}
             </Card.Body>
             </Card>
                        
