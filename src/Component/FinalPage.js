@@ -8,5 +8,6 @@ const FinalPage = () =>{
     <div>Thank you , {state.studentEmail}</div>
   )
 }
+//
 
 export default FinalPage
